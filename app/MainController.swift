@@ -1,34 +1,24 @@
 import Cocoa
 import WebKit
 
-let GIPHY_BASE_URL = "https://giphy.com/"
-let GIPHY_TRENDING_GIFS_URL = "https://giphy.com/trending-gifs/"
-let GIPHY_FAVICON_URL = "https://giphy.com/favicon.ico"
-
-let GIPHY_GIF_IDENTIFIER_REGEX = "^https://giphy.com/gifs/(.*-)?([^-\n]+)$"
-
-let GIPHY_GIF_URL_PREFIX = "https://media.giphy.com/media/"
-let GIPHY_GIF_URL_SUFFIX = "/giphy.gif"
+let TENOR_BASE_URL = "https://tenor.com/"
+let TENOR_VIEW_URL = "https://tenor.com/view/"
+let TENOR_FAVICON_URL = "https://tenor.com/favicon.ico"
 
 let MARKDOWN_PREFIX = "![]("
 let MARKDOWN_SUFFIX = ")"
 
-let IPHONE_USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Mobile/15E148 Safari/604.1"
-
-let STATUS_ITEM_TITLE = "GIPHY Anywhere"
+let STATUS_ITEM_TITLE = "Tenor Anywhere"
 let COPY_URL_MENU_ITEM_TITLE = "Copy GIF URL"
 let COPY_MARKDOWN_MENU_ITEM_TITLE = "Copy GIF URL (GitHub Markdown)"
 let QUIT_MENU_ITEM_TITLE = "Quit"
 
 let URL_KEY_PATH = "URL"
 
-func gifIdentifier(url: URL?) -> String? {
-    return url?.absoluteString.matchingStrings(regex: GIPHY_GIF_IDENTIFIER_REGEX).first?[2]
-}
-
 func gifURL(url: URL?) -> String? {
-    guard let identifier = gifIdentifier(url: url) else { return nil }
-    return GIPHY_GIF_URL_PREFIX + identifier + GIPHY_GIF_URL_SUFFIX
+    guard let string = url?.absoluteString else { return nil }
+    if (!string.starts(with: TENOR_VIEW_URL)) { return nil }
+    return string + ".gif";
 }
 
 func gifMarkdown(url: URL?) -> String? {
@@ -36,8 +26,8 @@ func gifMarkdown(url: URL?) -> String? {
     return MARKDOWN_PREFIX + url + MARKDOWN_SUFFIX
 }
 
-func getGiphyImage() -> NSImage {
-    return NSImage.init(byReferencing: URL.init(string: GIPHY_FAVICON_URL)!)
+func getTenorImage() -> NSImage {
+    return NSImage.init(byReferencing: URL.init(string: TENOR_FAVICON_URL)!)
 }
 
 func getiPhoneWebView() -> WKWebView {
@@ -45,7 +35,6 @@ func getiPhoneWebView() -> WKWebView {
     let webViewConf = WKWebViewConfiguration.init()
     webViewConf.preferences.plugInsEnabled = true
     let webView = WKWebView.init(frame: webViewRect, configuration: webViewConf)
-    webView.customUserAgent = IPHONE_USER_AGENT
     return webView
 }
 
@@ -66,7 +55,7 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let statusMenu = NSMenu.init()
-    let url = URL.init(string: GIPHY_TRENDING_GIFS_URL)!
+    let url = URL.init(string: TENOR_BASE_URL)!
     let webView = getiPhoneWebView()
     let webViewItem = NSMenuItem.init()
     let copyURLItem = NSMenuItem.init()
@@ -82,9 +71,9 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
     }
     
     func setupStatusItem() {
-        let giphyImage = getGiphyImage()
-        giphyImage.isValid ?
-            (statusItem.button?.image = giphyImage) :
+        let tenorImage = getTenorImage()
+        tenorImage.isValid ?
+            (statusItem.button?.image = tenorImage) :
             (statusItem.button?.title = STATUS_ITEM_TITLE)
         statusItem.button?.target = self
         statusItem.button?.action = #selector(MainController.statusItemClicked(_:))
@@ -120,24 +109,6 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         webView.load(URLRequest.init(url: url))
     }
     
-    func hideUseOurAppButton() {
-        webView.evaluateJavaScript("""
-            var aTags = document.getElementsByTagName('a');
-            var searchText = 'Use Our App';
-            var foundElement;
-            for (var i = 0; i < aTags.length; i++) {
-                if (aTags[i].textContent == searchText) {
-                    foundElement = aTags[i];
-                    break;
-                }
-            }
-            if (foundElement) {
-                foundElement.style = "display: none;";
-            }
-            """
-        ) { (_, _) in }
-    }
-    
     func popUpStatusItem() {
         statusItem.menu = statusMenu
         statusItem.button?.performClick(self)
@@ -152,7 +123,7 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         switch menuItem.action {
         case #selector(MainController.copyURL(_:)),
              #selector(MainController.copyMarkdown(_:)):
-            return gifIdentifier(url: webView.url) != nil
+            return gifURL(url: webView.url) != nil
         default:
             return true
         }
@@ -162,24 +133,9 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
                                of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
-        switch keyPath {
-        case URL_KEY_PATH:
-            switch webView.url?.absoluteString {
-            case GIPHY_BASE_URL:
-                reloadWebView()
-            default:
-                let enabled = gifIdentifier(url: webView.url) != nil
-                copyURLItem.isEnabled = enabled
-                copyMarkdownItem.isEnabled = enabled
-            }
-            hideUseOurAppButton()
-        default: break
-        }
-    }
-    
-    @objc func webView(_ webView: WKWebView,
-                       didFinish navigation: WKNavigation!) {
-        hideUseOurAppButton()
+        let enabled = gifURL(url: webView.url) != nil
+        copyURLItem.isEnabled = enabled
+        copyMarkdownItem.isEnabled = enabled
     }
     
     @objc func statusItemClicked(_ sender: AnyObject) {

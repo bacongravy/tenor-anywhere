@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5BF36EFD21B24A8200E7F982"
-               BuildableName = "GIPHY Anywhere.app"
-               BlueprintName = "GIPHY Anywhere"
-               ReferencedContainer = "container:giphy-anywhere.xcodeproj">
+               BuildableName = "Tenor Anywhere.app"
+               BlueprintName = "Tenor Anywhere"
+               ReferencedContainer = "container:tenor-anywhere.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,23 +33,12 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5B12D6BE21C3FD320026BD34"
-               BuildableName = "GIPHY Anywhere UI Tests.xctest"
-               BlueprintName = "GIPHY Anywhere UI Tests"
-               ReferencedContainer = "container:giphy-anywhere.xcodeproj">
+               BuildableName = "Tenor Anywhere UI Tests.xctest"
+               BlueprintName = "Tenor Anywhere UI Tests"
+               ReferencedContainer = "container:tenor-anywhere.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5BF36EFD21B24A8200E7F982"
-            BuildableName = "GIPHY Anywhere.app"
-            BlueprintName = "GIPHY Anywhere"
-            ReferencedContainer = "container:giphy-anywhere.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,13 +55,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BF36EFD21B24A8200E7F982"
-            BuildableName = "GIPHY Anywhere.app"
-            BlueprintName = "GIPHY Anywhere"
-            ReferencedContainer = "container:giphy-anywhere.xcodeproj">
+            BuildableName = "Tenor Anywhere.app"
+            BlueprintName = "Tenor Anywhere"
+            ReferencedContainer = "container:tenor-anywhere.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BF36EFD21B24A8200E7F982"
-            BuildableName = "GIPHY Anywhere.app"
-            BlueprintName = "GIPHY Anywhere"
-            ReferencedContainer = "container:giphy-anywhere.xcodeproj">
+            BuildableName = "Tenor Anywhere.app"
+            BlueprintName = "Tenor Anywhere"
+            ReferencedContainer = "container:tenor-anywhere.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

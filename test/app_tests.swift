@@ -1,6 +1,6 @@
 import XCTest
 
-class GIPHY_Anywhere_UI_Tests: XCTestCase {
+class Tenor_Anywhere_UI_Tests: XCTestCase {
 
     override func setUp() {
         continueAfterFailure = false

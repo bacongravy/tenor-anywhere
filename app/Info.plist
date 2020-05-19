@@ -11,7 +11,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>0.3.5, Copyright © 2020 David Kramer</string>
 	<key>CFBundleIconFile</key>
-	<string>giphy.icns</string>
+	<string>tenor.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

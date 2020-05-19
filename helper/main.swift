@@ -6,7 +6,7 @@ import Cocoa
 let runningApps = NSWorkspace.shared.runningApplications
 
 let isRunning = runningApps.contains {
-    $0.bundleIdentifier == "net.bacongravy.giphy-anywhere"
+    $0.bundleIdentifier == "net.bacongravy.tenor-anywhere"
 }
 
 if !isRunning {
