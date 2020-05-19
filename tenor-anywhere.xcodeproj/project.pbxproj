@@ -14,6 +14,7 @@
 		5B12D6BA21C216750026BD34 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12D6B921C216750026BD34 /* String.swift */; };
 		5B12D6C221C3FD330026BD34 /* app_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12D6C121C3FD330026BD34 /* app_tests.swift */; };
 		5BF36F1021B24B2200E7F982 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF36F0F21B24B2200E7F982 /* main.swift */; };
+		A4A93961247443690019E4C3 /* tenor.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A93960247443690019E4C3 /* tenor.png */; };
 		A4D546D12473A129003F7AB4 /* tenor.icns in Resources */ = {isa = PBXBuildFile; fileRef = A4D546D02473A129003F7AB4 /* tenor.icns */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		5BF36EFE21B24A8200E7F982 /* Tenor Anywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tenor Anywhere.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF36F0821B24A8400E7F982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF36F0F21B24B2200E7F982 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A4A93960247443690019E4C3 /* tenor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tenor.png; sourceTree = "<group>"; };
 		A4D546D02473A129003F7AB4 /* tenor.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = tenor.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 				5BF36F0F21B24B2200E7F982 /* main.swift */,
 				5BF36F0821B24A8400E7F982 /* Info.plist */,
 				A4D546D02473A129003F7AB4 /* tenor.icns */,
+				A4A93960247443690019E4C3 /* tenor.png */,
 				5BD007FF21BE2392007A7B2E /* Tenor Anywhere.entitlements */,
 			);
 			path = app;
@@ -268,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4A93961247443690019E4C3 /* tenor.png in Resources */,
 				A4D546D12473A129003F7AB4 /* tenor.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

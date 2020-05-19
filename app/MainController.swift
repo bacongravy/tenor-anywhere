@@ -26,8 +26,12 @@ func gifMarkdown(url: URL?) -> String? {
     return MARKDOWN_PREFIX + url + MARKDOWN_SUFFIX
 }
 
-func getTenorImage() -> NSImage {
-    return NSImage.init(byReferencing: URL.init(string: TENOR_FAVICON_URL)!)
+func getTenorImage() -> NSImage? {
+    guard let path = Bundle.main.pathForImageResource("tenor") else { return nil }
+    guard let image = NSImage.init(byReferencingFile: path) else { return nil }
+    image.isTemplate = true
+    image.size = NSSize(width: 24, height: 24)
+    return image;
 }
 
 func getiPhoneWebView() -> WKWebView {
@@ -72,9 +76,12 @@ class MainController: NSObject, NSApplicationDelegate, WKNavigationDelegate {
     
     func setupStatusItem() {
         let tenorImage = getTenorImage()
-        tenorImage.isValid ?
-            (statusItem.button?.image = tenorImage) :
-            (statusItem.button?.title = STATUS_ITEM_TITLE)
+        if let tenorImage = tenorImage {
+            statusItem.button?.image = tenorImage
+        }
+        else {
+            statusItem.button?.title = STATUS_ITEM_TITLE
+        }
         statusItem.button?.target = self
         statusItem.button?.action = #selector(MainController.statusItemClicked(_:))
         statusItem.button?.highlight(false)
